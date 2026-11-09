@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
 <style>
 :root{
   --charcoal:#343234;--editorial:#302E2F;--coral:#F28F86;--blush:#E99A9D;--gold:#C6A46C;
@@ -114,9 +115,31 @@ h2{font-size:clamp(32px,4.8vw,52px);margin-bottom:20px}
 
 /* Signup */
 .signup p.lead{max-width:480px;margin:0 auto 28px;color:var(--taupe)}
-form{display:flex;gap:10px;max-width:540px;margin:0 auto;flex-wrap:wrap;justify-content:center}
-input[type=email]{flex:1 1 240px;padding:16px 22px;font:inherit;font-size:16px;border:1.5px solid var(--charcoal);background:var(--ivory);border-radius:999px;color:var(--black)}
-.signup .fine{font-size:13px;color:var(--taupe);margin:14px 0 0}
+:where(.sib-form-message-panel){display:none}
+:where(.sib-form-message-panel .sib-notification__icon){width:20px;height:20px}
+.sib-form{max-width:560px;margin:0 auto;text-align:left}
+#error-message,#success-message{max-width:560px;margin:0 auto 16px;border:1px solid;border-radius:12px;font-family:var(--sans);font-size:15px;line-height:1.5;text-align:left}
+#error-message{color:#661d1d;background:#ffeded;border-color:#ff4949}
+#success-message{color:#085229;background:#e7faf0;border-color:#13ce66}
+#sib-container{max-width:560px;margin:0 auto;background:var(--ivory);border:1px solid var(--beige);border-radius:18px;padding:clamp(22px,4vw,36px);box-shadow:0 30px 60px -40px rgba(36,35,34,.4);text-align:left;direction:ltr}
+#sib-container,#sib-container *{font-family:var(--sans)}
+#sib-container .fld{padding:8px 0}
+#sib-container .entry__label{display:block;font-weight:700;font-size:15px;color:var(--black);text-align:left;margin-bottom:8px}
+#sib-container .input{width:100%;padding:16px 22px;font-size:16px;color:var(--black);background:var(--cream);border:1.5px solid var(--charcoal);border-radius:999px;box-shadow:none}
+#sib-container .input:focus{border-color:var(--coral);outline:3px solid rgba(242,143,134,.35);outline-offset:0}
+#sib-container input::placeholder{color:var(--taupe);text-align:left}
+#sib-container .entry__error{font-size:14px;color:#661d1d;background:#ffeded;border-color:#ff4949;border-radius:10px;text-align:left}
+#sib-container .entry__specification{font-size:13px;color:var(--taupe);text-align:left}
+#sib-container .entry__choice span{font-size:14px;color:var(--charcoal);text-align:left}
+#sib-container input:checked + .checkbox{background-color:var(--coral);border-color:var(--coral)}
+#sib-container .sib-form__declaration,#sib-container .sib-form__declaration div{font-size:13px;line-height:1.55;color:var(--taupe);text-align:left}
+#sib-container a{color:var(--charcoal);text-decoration:underline}
+#sib-form .sib-form-block__button{width:100%;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 32px;border:0;border-radius:999px;background:var(--coral);color:var(--black);font-weight:700;font-size:15px;line-height:1.2;white-space:nowrap;text-align:center;cursor:pointer;box-shadow:0 10px 30px -10px rgba(242,143,134,.7);transition:transform .2s,background .2s}
+#sib-form .sib-form-block__button:hover{background:#f6a8a1;transform:translateY(-2px)}
+#sib-form .progress-indicator__icon{width:18px;height:18px;flex:none}
+#sib-form .sib-hide-loader-icon{display:none}
+#sib-container .input--hidden{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;border:0;padding:0;pointer-events:none}
+@media (prefers-reduced-motion:reduce){#sib-form .sib-form-block__button{transition:none}}
 
 /* Merch */
 .merch{background:var(--ivory);text-align:center;padding:80px 0}
@@ -274,16 +297,92 @@ footer a{color:var(--coral);text-decoration:none}
 
 <section class="signup center" id="join">
   <div class="wrap rv">
-    <p class="accent">Stay in the loop</p>
-    <h2>Join the email list</h2>
-    <p class="lead">Workouts, nutrition tips, and first access to new launches, including merch drops.</p>
-    <!-- Replace action with your email provider's form URL (Mailchimp, Kit, Beehiiv, etc.) -->
-    <form action="YOUR_EMAIL_FORM_URL" method="post">
-      <label for="email" style="position:absolute;left:-9999px">Email address</label>
-      <input type="email" id="email" name="email" placeholder="Your email address" required autocomplete="email">
-      <button class="btn btn-coral" type="submit">Sign me up</button>
-    </form>
-    <p class="fine">No spam. Unsubscribe anytime.</p>
+    <p class="accent">Join the email list</p>
+    <h2>Stay in the Loop</h2>
+    <p class="lead">Bridal fitness tips, app updates, exclusive offers, and first access to future Fit Fiancé drops. Straight to your inbox.</p>
+
+    <!-- Begin Brevo Form -->
+    <div class="sib-form">
+      <div id="sib-form-container" class="sib-form-container">
+        <div id="error-message" class="sib-form-message-panel">
+          <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
+            <svg viewBox="0 0 512 512" class="sib-icon sib-notification__icon">
+              <path d="M256 40c118.621 0 216 96.075 216 216 0 119.291-96.61 216-216 216-119.244 0-216-96.562-216-216 0-119.203 96.602-216 216-216m0-32C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm-11.49 120h22.979c6.823 0 12.274 5.682 11.99 12.5l-7 168c-.268 6.428-5.556 11.5-11.99 11.5h-8.979c-6.433 0-11.722-5.073-11.99-11.5l-7-168c-.283-6.818 5.167-12.5 11.99-12.5zM256 340c-15.464 0-28 12.536-28 28s12.536 28 28 28 28-12.536 28-28-12.536-28-28-28z" />
+            </svg>
+            <span class="sib-form-message-panel__inner-text">Your subscription could not be saved. Please try again.</span>
+          </div>
+        </div>
+        <div></div>
+        <div id="success-message" class="sib-form-message-panel">
+          <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
+            <svg viewBox="0 0 512 512" class="sib-icon sib-notification__icon">
+              <path d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 464c-118.664 0-216-96.055-216-216 0-118.663 96.055-216 216-216 118.664 0 216 96.055 216 216 0 118.663-96.055 216-216 216zm141.63-274.961L217.15 376.071c-4.705 4.667-12.303 4.637-16.97-.068l-85.878-86.572c-4.667-4.705-4.637-12.303.068-16.97l8.52-8.451c4.705-4.667 12.303-4.637 16.97.068l68.976 69.533 163.441-162.13c4.705-4.667 12.303-4.637 16.97.068l8.451 8.52c4.668 4.705 4.637 12.303-.068 16.97z" />
+            </svg>
+            <span class="sib-form-message-panel__inner-text">Thanks for signing up! Confirm your email below to stay updated on fitness tips, app news, exclusive offers, and future Fit Fiancé launches.</span>
+          </div>
+        </div>
+        <div></div>
+        <div id="sib-container" class="sib-container--large sib-container--vertical">
+          <form id="sib-form" method="POST" action="https://b469d75d.sibforms.com/serve/MUIFAGnQCgqKU2RKyvjqsfzuPa5hOx9GjTBWyoPKN-uENhTt6BzVveGnkHM_9TMP2--QVpeQDTNOvitz6c8nlue2tgQvkKbyXdVbfoi9rk6B-hC63NfE65EZ3nEkU0UF-UltQFtldASaV6p3b6OlvL-dJlw2mDMZtLEoPPo5Eu06rRjZTw4n4yNoOzTOY_6XePnw457M0uEqYOA3dg==" data-type="subscription">
+
+            <div class="fld">
+              <div class="sib-input sib-form-block">
+                <div class="form__entry entry_block">
+                  <div class="form__label-row">
+                    <label class="entry__label" for="EMAIL" data-required="*">Enter your email address to subscribe</label>
+                    <div class="entry__field">
+                      <input class="input" type="text" id="EMAIL" name="EMAIL" autocomplete="off" value="" placeholder="Your email address" data-required="true" required />
+                    </div>
+                  </div>
+                  <label class="entry__error entry__error--primary"></label>
+                  <label class="entry__specification">Provide your email address to subscribe. For e.g abc@xyz.com</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="fld">
+              <div class="sib-optin sib-form-block">
+                <div class="form__entry entry_mcq">
+                  <div class="form__label-row">
+                    <div class="entry__choice">
+                      <label>
+                        <input type="checkbox" class="input_replaced" value="1" id="OPT_IN" name="OPT_IN" />
+                        <span class="checkbox checkbox_tick_positive"></span><span><p>I agree to receive your emails and confirm that I have read your privacy policy and legal notice.</p></span>
+                      </label>
+                    </div>
+                  </div>
+                  <label class="entry__error entry__error--primary"></label>
+                  <label class="entry__specification">You may unsubscribe at any time using the link in our newsletter.</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="fld">
+              <div class="sib-form__declaration">
+                <div>
+                  <p>We work with Brevo to collect your data and send you our communications. As part of this, Brevo acts under our responsibility and our instructions — we remain responsible for how your data is used for this purpose. Brevo may also, on its own side, use some of this data to help keep the platform secure (for example, to spot attempted fraud or hacking) — to find out more about this part, see <a target="_blank" href="https://www.brevo.com/en/legal/privacypolicy/" rel="nofollow noopener">Brevo&#39;s Privacy Policy.</a></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="fld">
+              <div class="sib-form-block">
+                <button class="sib-form-block__button sib-form-block__button-with-loader" form="sib-form" type="submit">
+                  <svg class="icon clickable__icon progress-indicator__icon sib-hide-loader-icon" viewBox="0 0 512 512">
+                    <path d="M460.116 373.846l-20.823-12.022c-5.541-3.199-7.54-10.159-4.663-15.874 30.137-59.886 28.343-131.652-5.386-189.946-33.641-58.394-94.896-95.833-161.827-99.676C261.028 55.961 256 50.751 256 44.352V20.309c0-6.904 5.808-12.337 12.703-11.982 83.556 4.306 160.163 50.864 202.11 123.677 42.063 72.696 44.079 162.316 6.031 236.832-3.14 6.148-10.75 8.461-16.728 5.01z" />
+                  </svg>
+                  Keep Me Updated
+                </button>
+              </div>
+            </div>
+
+            <input type="text" name="email_address_check" value="" class="input--hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <input type="hidden" name="locale" value="en">
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- End Brevo Form -->
   </div>
 </section>
 
@@ -302,6 +401,28 @@ footer a{color:var(--coral);text-decoration:none}
 </footer>
 
 <div class="sticky"><a class="btn btn-coral" href="https://studio.com/apps/sam-holmberg/fitfiance" rel="noopener">Get My Personalized Plan</a></div>
+
+<!-- Brevo form scripts -->
+<script>
+  window.REQUIRED_CODE_ERROR_MESSAGE = 'Please choose a country code';
+  window.LOCALE = 'en';
+  window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE = "The information provided is invalid. Please review the field format and try again.";
+  window.REQUIRED_ERROR_MESSAGE = "This field cannot be left blank. ";
+  window.GENERIC_INVALID_MESSAGE = "The information provided is invalid. Please review the field format and try again.";
+  window.INVALID_NUMBER = "The information provided is invalid. Please review the field format and try again.";
+  window.INVALID_DATE = "Please enter a valid date";
+  window.REQUIRED_MULTISELECT_MESSAGE = 'Please select at least 1 option';
+  window.translation = {
+    common: {
+      selectedList: '{quantity} list selected',
+      selectedLists: '{quantity} lists selected',
+      selectedOption: '{quantity} selected',
+      selectedOptions: '{quantity} selected',
+    }
+  };
+  var AUTOHIDE = Boolean(0);
+</script>
+<script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
 
 <script>
 (function(){
